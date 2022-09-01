@@ -1,4 +1,32 @@
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      title: "Mis Actividades",
+      containerId: "container",
+      blockId: "block",
+      isButtonDisabled: true,
+      date: "2022-31-08",
+      today: "2022-21-08",
+      done: true,
+      items: ["Pera", "Manzana", "Platano", "Naranja", "Durazno"],
+      object: {
+        propiedad1: "Valor 1",
+        propiedad2: "Valor 2",
+        propiedad3: "Valor 3",
+      },
+      count: 0,
+      email: "example@gmail.com",
+    };
+  },
+  methods: {
+    incrementCount($event) {
+      console.log($event);
+      this.count++;
+    },
+  },
+};
+</script>
 
 <template>
   <header>
@@ -10,8 +38,60 @@
       height="125"
     />
   </header>
-
-  <main></main>
+  <main>
+    <!---// mustache (textos en la plantilla) -->
+    <div>{{ title }}</div>
+    <!---// Enlace a propiedades -->
+    <div>
+      <div v-bind:id="containerId"></div>
+      <div :id="blockId"></div>
+      <button :disabled="isButtonDisabled">Click me!</button>
+    </div>
+    <!---// Renderizado condicional -->
+    <div>
+      <div v-if="today == date">Is Today!</div>
+      <div v-else-if="done">Is Done!</div>
+      <span v-else>Not is Today :c</span>
+      <div v-show="today == date">Is Today!</div>
+    </div>
+    <!---// Renderizado de listas -->
+    <div>
+      Mis frutas preferidas:
+      <ul>
+        <li v-for="item in items" :key="item">
+          {{ item }}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="(item, index) in items" :key="item">
+          {{ item }} : {{ index }}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="(item, index) of items" :key="index">
+          {{ item }} : {{ index }}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="(value, key) of object" :key="key">
+          {{ key }} : {{ value }}
+        </li>
+      </ul>
+    </div>
+    <!---// Manejo de eventos-->
+    <div>
+      <div>{{ count }}</div>
+      <button v-on:click="count = count + 1">Increase</button>
+      <button @click="incrementCount">Increase</button>
+      <button @click="incrementCount()">Increase</button>
+    </div>
+    <!---// Enlace bidireccional -->
+    <div>
+      <div>{{ email }}</div>
+      <input v-model="email" />
+      <input v-model.trim="email" />
+    </div>
+  </main>
 </template>
 
 <style scoped>
