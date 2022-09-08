@@ -24,6 +24,11 @@ export default {
       console.log($event);
       this.count++;
     },
+    updateEmail($event) {
+      console.log($event);
+      console.log($event.target.value);
+      this.email = $event.target.value;
+    },
   },
 };
 </script>
@@ -88,8 +93,15 @@ export default {
     <!---// Enlace bidireccional -->
     <div>
       <div>{{ email }}</div>
-      <input v-model="email" />
-      <input v-model.trim="email" />
+      v-model: <input v-model="email" />
+      <br />
+      v-model.trim <input v-model.trim="email" />
+      <br />
+      change event <input :value="email" @change="updateEmail" />
+      <br />
+      update event <input :value="email" @input="updateEmail" />
+      <br />
+      v-model.lazy <input v-model.lazy="email" />
     </div>
   </main>
 </template>
