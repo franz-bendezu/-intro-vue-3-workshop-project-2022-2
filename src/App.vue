@@ -17,7 +17,9 @@ export default {
       },
       count: 0,
       email: "example@gmail.com",
-      tab: "",
+      tab: "tab-6",
+      fullName: "",
+      fullNameError: false,
     };
   },
   methods: {
@@ -29,6 +31,13 @@ export default {
       console.log($event);
       console.log($event.target.value);
       this.email = $event.target.value;
+    },
+    validateFullName() {
+      if (this.fullName.length > 10) {
+        this.fullNameError = true;
+      } else {
+        this.fullNameError = false;
+      }
     },
   },
 };
@@ -53,6 +62,7 @@ export default {
       <option value="tab-3">Renderizado de listas</option>
       <option value="tab-4">Manejo de eventos</option>
       <option value="tab-5">Enlace bidireccional</option>
+      <option value="tab-6">Enlace de clases y estilo</option>
     </select>
     <div>{{ title }}</div>
     <!---// Enlace a propiedades -->
@@ -111,6 +121,14 @@ export default {
       update event <input :value="email" @input="updateEmail" />
       <br />
       v-model.lazy <input v-model.lazy="email" />
+    </div>
+    <div v-else-if="tab === 'tab-6'">
+      <input v-model="fullName" />
+      <div :style="{ color: fullNameError ? '#bb2124' : '#22bb33' }">
+        {{ fullNameError ? "Campo incorrecto" : "Campo correcto" }}
+      </div>
+      {{ fullNameError }}
+      <button @click="validateFullName">Enviar</button>
     </div>
   </main>
 </template>
