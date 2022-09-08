@@ -17,6 +17,7 @@ export default {
       },
       count: 0,
       email: "example@gmail.com",
+      tab: "",
     };
   },
   methods: {
@@ -45,22 +46,30 @@ export default {
   </header>
   <main>
     <!---// mustache (textos en la plantilla) -->
+    {{ tab }}
+    <select v-model="tab">
+      <option value="tab-1">Enlace a propiedades</option>
+      <option value="tab-2">Renderizado condicional</option>
+      <option value="tab-3">Renderizado de listas</option>
+      <option value="tab-4">Manejo de eventos</option>
+      <option value="tab-5">Enlace bidireccional</option>
+    </select>
     <div>{{ title }}</div>
     <!---// Enlace a propiedades -->
-    <div>
+    <div v-if="tab === 'tab-1'">
       <div v-bind:id="containerId"></div>
       <div :id="blockId"></div>
       <button :disabled="isButtonDisabled">Click me!</button>
     </div>
     <!---// Renderizado condicional -->
-    <div>
+    <div v-else-if="tab === 'tab-2'">
       <div v-if="today == date">Is Today!</div>
       <div v-else-if="done">Is Done!</div>
       <span v-else>Not is Today :c</span>
       <div v-show="today == date">Is Today!</div>
     </div>
     <!---// Renderizado de listas -->
-    <div>
+    <div v-else-if="tab === 'tab-3'">
       Mis frutas preferidas:
       <ul>
         <li v-for="item in items" :key="item">
@@ -84,14 +93,14 @@ export default {
       </ul>
     </div>
     <!---// Manejo de eventos-->
-    <div>
+    <div v-else-if="tab === 'tab-4'">
       <div>{{ count }}</div>
       <button v-on:click="count = count + 1">Increase</button>
       <button @click="incrementCount">Increase</button>
       <button @click="incrementCount()">Increase</button>
     </div>
     <!---// Enlace bidireccional -->
-    <div>
+    <div v-else-if="tab === 'tab-5'">
       <div>{{ email }}</div>
       v-model: <input v-model="email" />
       <br />
