@@ -1,5 +1,10 @@
 <script>
+import CounterButton from './components/CounterButton.vue';
+
 export default {
+  components:{
+    CounterButton
+  },
   data() {
     return {
       title: "Mis Actividades",
@@ -94,6 +99,7 @@ export default {
       <option value="tab-7">Enlace de clases</option>
       <option value="tab-8">Propiedades computadas</option>
       <option value="tab-9">Observadores</option>
+      <option value="tab-10">Componentes</option>
     </select>
     <div>{{ title }}</div>
     <!---// Enlace a propiedades -->
@@ -214,6 +220,10 @@ export default {
         </div>
       </div>
       <p v-if="isSearchingUsername" class="help">Buscando...</p>
+    </div>
+    <div v-else-if="tab === 'tab-10'">
+      <counter-button></counter-button>
+      <CounterButton color="info"></CounterButton>
     </div>
   </main>
 </template>
