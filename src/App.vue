@@ -17,9 +17,11 @@ export default {
       },
       count: 0,
       email: "example@gmail.com",
-      tab: "tab-6",
+      tab: "tab-9",
       fullName: "",
       fullNameError: false,
+      username: "",
+      isSearchingUsername: false,
     };
   },
   methods: {
@@ -39,15 +41,31 @@ export default {
         this.fullNameError = false;
       }
     },
-    getDoubleCount(){
-      console.log("getDoubleCount")
+    getDoubleCount() {
+      console.log("getDoubleCount");
       return this.count * 2;
-    }
+    },
+    print(value) {
+      console.log(value);
+    },
   },
   computed: {
     doubleCount() {
-      console.log("doubleCount")
+      console.log("doubleCount");
       return this.count * 2;
+    },
+  },
+  watch: {
+    doubleCount(newValue, oldValue) {
+      this.print(newValue);
+      this.print(oldValue);
+    },
+    username(newValue) {
+      this.print(newValue);
+      this.isSearchingUsername = true;
+      setTimeout(() => {
+        this.isSearchingUsername = false;
+      }, 2000);
     },
   },
 };
@@ -75,6 +93,7 @@ export default {
       <option value="tab-6">Enlace de Estilo</option>
       <option value="tab-7">Enlace de clases</option>
       <option value="tab-8">Propiedades computadas</option>
+      <option value="tab-9">Observadores</option>
     </select>
     <div>{{ title }}</div>
     <!---// Enlace a propiedades -->
@@ -170,9 +189,9 @@ export default {
       </div>
     </div>
     <div v-else-if="tab === 'tab-8'">
-      <p class="title is-4">Contador: {{count}}</p>
-      <p class="title is-4">Contador x2: {{doubleCount}}</p>
-      <p class="title is-4">Contador x2: {{getDoubleCount()}}</p>
+      <p class="title is-4">Contador: {{ count }}</p>
+      <p class="title is-4">Contador x2: {{ doubleCount }}</p>
+      <p class="title is-4">Contador x2: {{ getDoubleCount() }}</p>
       <div class="field is-grouped">
         <div class="control">
           <button @click="incrementCount" class="button is-link">
@@ -180,6 +199,21 @@ export default {
           </button>
         </div>
       </div>
+    </div>
+
+    <div v-else-if="tab === 'tab-9'">
+      <div class="field">
+        <label class="label">Nombres de usuario</label>
+        <div class="control">
+          <input
+            v-model.lazy="username"
+            class="input"
+            type="text"
+            placeholder="Ingrese nombre de usuario"
+          />
+        </div>
+      </div>
+      <p v-if="isSearchingUsername" class="help">Buscando...</p>
     </div>
   </main>
 </template>
