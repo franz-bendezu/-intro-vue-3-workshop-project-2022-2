@@ -53,7 +53,7 @@ export default {
       height="125"
     />
   </header>
-  <main>
+  <main class="container">
     <!---// mustache (textos en la plantilla) -->
     {{ tab }}
     <select v-model="tab">
@@ -62,7 +62,8 @@ export default {
       <option value="tab-3">Renderizado de listas</option>
       <option value="tab-4">Manejo de eventos</option>
       <option value="tab-5">Enlace bidireccional</option>
-      <option value="tab-6">Enlace de clases y estilo</option>
+      <option value="tab-6">Enlace de Estilo</option>
+      <option value="tab-7">Enlace de clases</option>
     </select>
     <div>{{ title }}</div>
     <!---// Enlace a propiedades -->
@@ -129,6 +130,33 @@ export default {
       </div>
       {{ fullNameError }}
       <button @click="validateFullName">Enviar</button>
+    </div>
+    <div v-else-if="tab === 'tab-7'">
+      <div class="field">
+        <label class="label">Nombres completos</label>
+        <div class="control">
+          <input
+            v-model="fullName"
+            class="input"
+            :class="{
+              'is-danger': fullNameError,
+              'is-success': !fullNameError,
+            }"
+            type="email"
+            placeholder="Email input"
+          />
+        </div>
+        <p class="help" :class="[fullNameError ? 'is-danger' : 'is-success']">
+          {{ fullNameError ? "Campo incorrecto" : "Campo correcto" }}
+        </p>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button @click="validateFullName" class="button is-link">
+            Validar
+          </button>
+        </div>
+      </div>
     </div>
   </main>
 </template>
