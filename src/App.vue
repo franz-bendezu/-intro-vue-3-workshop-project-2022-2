@@ -39,6 +39,16 @@ export default {
         this.fullNameError = false;
       }
     },
+    getDoubleCount(){
+      console.log("getDoubleCount")
+      return this.count * 2;
+    }
+  },
+  computed: {
+    doubleCount() {
+      console.log("doubleCount")
+      return this.count * 2;
+    },
   },
 };
 </script>
@@ -64,6 +74,7 @@ export default {
       <option value="tab-5">Enlace bidireccional</option>
       <option value="tab-6">Enlace de Estilo</option>
       <option value="tab-7">Enlace de clases</option>
+      <option value="tab-8">Propiedades computadas</option>
     </select>
     <div>{{ title }}</div>
     <!---// Enlace a propiedades -->
@@ -154,6 +165,18 @@ export default {
         <div class="control">
           <button @click="validateFullName" class="button is-link">
             Validar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div v-else-if="tab === 'tab-8'">
+      <p class="title is-4">Contador: {{count}}</p>
+      <p class="title is-4">Contador x2: {{doubleCount}}</p>
+      <p class="title is-4">Contador x2: {{getDoubleCount()}}</p>
+      <div class="field is-grouped">
+        <div class="control">
+          <button @click="incrementCount" class="button is-link">
+            Aumentar
           </button>
         </div>
       </div>
