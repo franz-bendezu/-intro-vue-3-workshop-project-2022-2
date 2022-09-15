@@ -14,12 +14,14 @@ export default {
       required: false,
     },
   },
+  emits: ["update"],
   data: () => ({
     count: 0,
   }),
   methods: {
     incrementCount() {
       this.count++;
+      this.$emit("update", this.count);
     },
   },
   computed: {
