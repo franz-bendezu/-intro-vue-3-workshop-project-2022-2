@@ -1,11 +1,13 @@
 <script>
 import CounterButton from "./components/CounterButton.vue";
 import BInput from "./components/BInput.vue";
+import BButton from "./components/BButton.vue";
 
 export default {
   components: {
     CounterButton,
     BInput,
+    BButton,
   },
   data() {
     return {
@@ -24,13 +26,14 @@ export default {
       },
       count: 0,
       email: "example@gmail.com",
-      tab: "tab-10",
+      tab: "tab-11",
       fullName: "",
       fullNameError: false,
       username: "",
       isSearchingUsername: false,
       address: "",
       errorAddress: [],
+      fruitName: "Pera",
     };
   },
   methods: {
@@ -59,6 +62,10 @@ export default {
     },
     onUpdateCount(count) {
       this.print(count);
+    },
+    onSubmitForm($event) {
+      console.log($event);
+      this.print(this.fruitName);
     },
   },
   computed: {
@@ -107,6 +114,7 @@ export default {
       <option value="tab-8">Propiedades computadas</option>
       <option value="tab-9">Observadores</option>
       <option value="tab-10">Componentes</option>
+      <option value="tab-11">Formularios</option>
     </select>
     <div>{{ title }}</div>
     <!---// Enlace a propiedades -->
@@ -258,6 +266,12 @@ export default {
       {{ address }}
       {{ errorAddress }}
       <BInput v-model="address" v-model:errors="errorAddress"></BInput>
+    </div>
+    <div v-else-if="tab === 'tab-11'">
+      <form @submit.prevent="onSubmitForm">
+        <BInput v-model="fruitName"></BInput>
+        <BButton type="submit">Enviar</BButton>
+      </form>
     </div>
   </main>
 </template>
