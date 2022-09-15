@@ -1,9 +1,9 @@
 <script>
-import CounterButton from './components/CounterButton.vue';
+import CounterButton from "./components/CounterButton.vue";
 
 export default {
-  components:{
-    CounterButton
+  components: {
+    CounterButton,
   },
   data() {
     return {
