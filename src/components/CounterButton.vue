@@ -1,6 +1,7 @@
 <template>
   <button @click="incrementCount" class="button" :class="buttonClasses">
     Incrementar ({{ count }})
+    <slot> </slot>
   </button>
 </template>
 
