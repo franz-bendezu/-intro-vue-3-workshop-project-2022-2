@@ -53,6 +53,9 @@ export default {
     print(value) {
       console.log(value);
     },
+    onUpdateCount(count) {
+      this.print(count);
+    },
   },
   computed: {
     doubleCount() {
@@ -246,6 +249,7 @@ export default {
           <div>Valor actual: {{ data.count }}</div>
         </template>
       </CounterButton>
+      <CounterButton color="info" @update="onUpdateCount"> </CounterButton>
     </div>
   </main>
 </template>
