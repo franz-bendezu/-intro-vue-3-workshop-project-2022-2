@@ -1,9 +1,11 @@
 <script>
 import CounterButton from "./components/CounterButton.vue";
+import BInput from "./components/BInput.vue";
 
 export default {
   components: {
     CounterButton,
+    BInput,
   },
   data() {
     return {
@@ -27,6 +29,8 @@ export default {
       fullNameError: false,
       username: "",
       isSearchingUsername: false,
+      address: "",
+      errorAddress: [],
     };
   },
   methods: {
@@ -250,6 +254,10 @@ export default {
         </template>
       </CounterButton>
       <CounterButton color="info" @update="onUpdateCount"> </CounterButton>
+      <br />
+      {{ address }}
+      {{ errorAddress }}
+      <BInput v-model="address" v-model:errors="errorAddress"></BInput>
     </div>
   </main>
 </template>
