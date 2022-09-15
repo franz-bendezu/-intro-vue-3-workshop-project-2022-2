@@ -6,7 +6,13 @@
 
 <script>
 export default {
-  props: ["color"],
+  props: {
+    color: {
+      type: String,
+      default: () => "primary",
+      required: false,
+    },
+  },
   data: () => ({
     count: 0,
   }),
@@ -17,7 +23,7 @@ export default {
   },
   computed: {
     buttonClasses() {
-      const colorClass = "is-" + (this.color || "primary");
+      const colorClass = "is-" + this.color;
       return [colorClass];
     },
   },

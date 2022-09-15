@@ -22,7 +22,7 @@ export default {
       },
       count: 0,
       email: "example@gmail.com",
-      tab: "tab-9",
+      tab: "tab-10",
       fullName: "",
       fullNameError: false,
       username: "",
@@ -224,6 +224,9 @@ export default {
     <div v-else-if="tab === 'tab-10'">
       <counter-button></counter-button>
       <CounterButton color="info"></CounterButton>
+      <counter-button :color="undefined"></counter-button>
+      <counter-button :color="null"></counter-button>
+      <counter-button :color="2"></counter-button>
     </div>
   </main>
 </template>
