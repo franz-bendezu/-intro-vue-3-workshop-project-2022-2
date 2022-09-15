@@ -228,6 +228,14 @@ export default {
       <counter-button :color="null"></counter-button>
       <counter-button :color="2"></counter-button>
       <CounterButton color="info"><div>Probando slot</div> </CounterButton>
+      <CounterButton color="info">
+        <template #icon>
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </template>
+        <div>Probando slot</div>
+      </CounterButton>
     </div>
   </main>
 </template>
