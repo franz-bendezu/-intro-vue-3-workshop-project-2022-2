@@ -236,6 +236,16 @@ export default {
         </template>
         <div>Probando slot</div>
       </CounterButton>
+      <CounterButton color="info">
+        <template #icon>
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </template>
+        <template #default="data">
+          <div>Valor actual: {{ data.count }}</div>
+        </template>
+      </CounterButton>
     </div>
   </main>
 </template>
