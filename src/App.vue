@@ -227,6 +227,7 @@ export default {
       <counter-button :color="undefined"></counter-button>
       <counter-button :color="null"></counter-button>
       <counter-button :color="2"></counter-button>
+      <CounterButton color="info"><div>Probando slot</div> </CounterButton>
     </div>
   </main>
 </template>
